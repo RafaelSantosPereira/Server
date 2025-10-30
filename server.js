@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 3000;
 // Detectar ambiente
 const isProduction = process.env.NODE_ENV === 'production';
 
-// Configurar CORS dinamicamente
 app.use(cors({
   origin: isProduction 
     ? process.env.FRONTEND_URL   
@@ -33,12 +32,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Teste de rota
 app.get('/', (req, res) => {
-  res.send(`API online em modo ${isProduction ? 'Produção' : 'Desenvolvimento'} 🚀`);
+  res.send(`API online em modo ${isProduction ? 'Produção' : 'Desenvolvimento'}`);
 });
 
-//
+
 app.get('/products', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM product');
@@ -68,7 +66,6 @@ app.get('/products/category/id/:categoryId', async (req, res) => {
 app.get('/products/:id/details', async (req, res) => {
   const { id } = req.params;
   try {
-    //informaçao basica
     const productResult = await pool.query(
       `SELECT id, name, price, image_url FROM product WHERE id = $1`,
       [id]
@@ -79,7 +76,6 @@ app.get('/products/:id/details', async (req, res) => {
     }
 
     const product = productResult.rows[0];
-    //specs do produto
     const specsResult = await pool.query(
       `SELECT spec_key, spec_value FROM product_specs WHERE product_id = $1`,
       [id]
