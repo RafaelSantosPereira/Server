@@ -185,7 +185,7 @@ app.get('/verify/:token', async (req, res) => {
       [token]
     );
 
-    res.redirect('http://localhost:5173/login?verified=success');
+    res.redirect(`${process.env.FRONTEND_URL}/login?verified=success`);
 
     
   } catch (error) {
