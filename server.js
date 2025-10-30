@@ -16,7 +16,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 // Configurar CORS dinamicamente
 app.use(cors({
   origin: isProduction 
-    ? process.env.FRONTEND_URL   // exemplo: https://teu-front.vercel.app
+    ? process.env.FRONTEND_URL   
     : 'http://localhost:5173',   // ambiente local
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
@@ -144,7 +144,7 @@ app.post('/register', async (req, res) => {
     );
 
     // envio de email de comfirmaçao
-    const verifyUrl = `http://localhost:3000/verify/${token}`;
+    const verifyUrl = `${process.env.FRONTEND_URL}/verify/${token}`;;
     await transporter.sendMail({
       from: '"CompuStore" <rafael.ocyan@gmail.com> ',
       to: email,
