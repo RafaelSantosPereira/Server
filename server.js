@@ -134,7 +134,7 @@ app.post('/register', async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10);
     const token = uuidv4();
     const tokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
-    const verifyUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/verify/${token}`;
+    const verifyUrl = `${process.env.SERVER_URL || 'http://localhost:3000'}/verify/${token}`;
 
 
     await pool.query(
