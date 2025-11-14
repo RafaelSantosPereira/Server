@@ -211,6 +211,8 @@ app.post('/register', async (req, res) => {
     console.error('Erro no registo:', error);
     res.status(500).json({ message: 'Erro no registo' });
   }
+
+  console.log("Resend key:", process.env.RESEND_API_KEY)
 });
 
 
