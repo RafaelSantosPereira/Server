@@ -32,12 +32,12 @@ async function sendVerificationEmail(email, name, token) {
     const verifyUrl = `${process.env.SERVER_URL || 'http://localhost:3000'}/verify/${token}`;
     
     const resendResponse = await resend.emails.send({
-    from: "compustore@rafaelpereira.site",
+    from: '"CompuStore" <compustore@rafaelpereira.site>',
     to: email,
     subject: 'Confirme o seu email',
     html: `
-      <h2>Bem-vindo, ${name}!</h2>
-      <p>A CompuStore é um projeto criado para fins pessoais sem qualquer intuito malicioso ou lucrativo.</p>
+      <h2>Bem-vindo à CompuStore, ${name}!</h2>
+      <p>Clique no botão abaixo para ativar a sua conta:</p>
       <p>Para ativar a sua conta, clique no botão abaixo:</p>
       
       <a href="${verifyUrl}" 
