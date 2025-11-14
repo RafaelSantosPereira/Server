@@ -37,7 +37,6 @@ async function sendVerificationEmail(email, name, token) {
     subject: 'Confirme o seu email',
     html: `
       <h2>Bem-vindo à CompuStore, ${name}!</h2>
-      <p>Clique no botão abaixo para ativar a sua conta:</p>
       <p>Para ativar a sua conta, clique no botão abaixo:</p>
       
       <a href="${verifyUrl}" 
