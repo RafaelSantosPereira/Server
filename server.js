@@ -32,17 +32,32 @@ async function sendVerificationEmail(email, name, token) {
     const verifyUrl = `${process.env.SERVER_URL || 'http://localhost:3000'}/verify/${token}`;
     
     const resendResponse = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: email,
-      subject: 'Confirme o seu email',
-      html: `
-        <h2>Bem-vindo, ${name}!</h2>
-        <p>A CompuStore é um projeto criado para fins pessoais sem qualquer intuito malicioso ou lucrativo.</p>
-        <p>Para ativar a sua conta, clique no link abaixo:</p>
-        <a href="${verifyUrl}">${verifyUrl}</a>
-        <p>Este link é válido por 24 horas.</p>
-      `,
-    });
+    from: "compustore@rafaelpereira.site",
+    to: email,
+    subject: 'Confirme o seu email',
+    html: `
+      <h2>Bem-vindo, ${name}!</h2>
+      <p>A CompuStore é um projeto criado para fins pessoais sem qualquer intuito malicioso ou lucrativo.</p>
+      <p>Para ativar a sua conta, clique no botão abaixo:</p>
+      
+      <a href="${verifyUrl}" 
+        style="
+          display: inline-block;
+          padding: 12px 20px;
+          background-color: #1a73e8;
+          color: #ffffff;
+          text-decoration: none;
+          border-radius: 6px;
+          font-weight: bold;
+          font-size: 16px;
+          margin: 14px 0;
+        ">
+        Ativar Conta
+      </a>
+
+      <p>Este link é válido por 24 horas.</p>
+    `,
+  });
 
     console.log("Email de verificação enviado para:", email);
     return resendResponse;
